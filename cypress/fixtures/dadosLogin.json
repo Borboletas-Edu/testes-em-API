@@ -1,0 +1,11 @@
+[
+{
+  "email": "Edu.qa@ebac.com.br",
+  "senha": "teste"
+},
+
+{
+  "email": "Email.Errado@Errado.erro",
+  "senha": "erro"
+}
+]

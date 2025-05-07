@@ -1,0 +1,21 @@
+[
+{
+  "item":"Jhin ",
+  "valor":4,
+  "descr":"São apenas quatro palavras",
+  "quant":4
+},
+{
+  "item":"Produto a ser editado",
+  "valor": 50,
+  "descr":"editar",
+  "quant": 50
+},
+{
+  "item":"Produto a ser deletado",
+  "valor": 100,
+  "descr":"Deletar",
+  "quant": 100
+}
+]
+
