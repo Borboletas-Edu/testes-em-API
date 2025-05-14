@@ -1,4 +1,7 @@
-Cypress.Commands.add("cadastrar", (token, item) => {
+
+//Produtos
+
+Cypress.Commands.add("cadastrarProduto", (token, item) => {
 return cy.fixture("cadastroItens").then(dados=>{
     return cy.request({
         method: "POST",
@@ -15,10 +18,9 @@ return cy.fixture("cadastroItens").then(dados=>{
             expect(response.status).to.equal(201)
             });
         })
-        });
+  });
       
-
-Cypress.Commands.add("cadastrarIgual", (token, item) => {
+Cypress.Commands.add("cadastrarProdutoIgual", (token, item) => {
     return cy.fixture("cadastroItens").then(dados=>{
       return cy.request({
           method: "POST",
@@ -35,7 +37,7 @@ Cypress.Commands.add("cadastrarIgual", (token, item) => {
               expect(response.status).to.equal(400)
             });
           })
-          });
+  });
 
 Cypress.Commands.add("editarProduto", (token, item, id) => {
     return cy.fixture("cadastroItens").then(dados=>{
@@ -54,7 +56,7 @@ Cypress.Commands.add("editarProduto", (token, item, id) => {
           expect(response.status).to.equal(200)
         })
         })
-        })
+  });
 
 Cypress.Commands.add("deletarProduto", (token, id) => {
     return cy.request({
@@ -65,40 +67,69 @@ Cypress.Commands.add("deletarProduto", (token, id) => {
       expect(response.body.message).to.equal('Registro excluído com sucesso'),
       expect(response.status).to.equal(200)
     })
-    })
+  });
 
-Cypress.Commands.add("tokenadm", () => {
-    return cy.fixture("dadosLogin").then(dados=>{
-      return cy.request({
-        method: 'POST',
-        url: 'login',
-        body: {
-          email: dados[0].email,
-          password: dados[0].senha
-        }
-      }).then((response) => {
-        return response.body.authorization 
-    })
-    })
-    })
+//Usuários
 
-    Cypress.Commands.add("loginEmailErrado", () => {
-    cy.fixture("dadosLogin").then(dados=>{
-      cy.request({
-        method: 'POST',
-        url: 'login',
-        body: {
-          "email": dados[1].email,
-          "password": dados[1].senha
-        }, failOnStatusCode: false
-      }).should(response =>{
-        expect(response.body.email).to.equal('email deve ser um email válido')
-        expect(response.status).to.equal(400)
-    })
-    })
-    })
+Cypress.Commands.add("loginEmailErrado", () => {
+  return cy.fixture("dadosLogin").then(dados=>{
+    return cy.request({
+      method: 'POST',
+      url: 'login',
+      body: {
+        "email": dados[2].email,
+        "password": dados[2].senha
+      }, failOnStatusCode: false
+    }).should(response =>{
+      expect(response.body.email).to.equal('email deve ser um email válido')
+      expect(response.status).to.equal(400)
+  })
+  })
+  });
 
+Cypress.Commands.add("cadastrarUsuario", (nome, email, senha) => {
+  return cy.request({
+      method: "POST",
+      url: "usuarios",
+      body: {
+      "nome": nome,
+      "email": email,
+      "password": senha,
+      "administrador": "true"
+      }
+      }).should((response) => {
+      expect(response.status).to.equal(201)
+      expect(response.body.message).to.equal("Cadastro realizado com sucesso")
+  })
+  });
 
+Cypress.Commands.add("editarUsuario", (token, id, nome, email, senha) =>{
+  cy.request({
+    method:"PUT",
+    url:`${"usuarios/" + id}`,
+    headers: {authorization: token},
+    body: {
+      "nome": nome,
+      "email": email,
+      "password": senha,
+      "administrador": "true"
+    } 
+    }).should((response) => {
+      expect(response.body.message).equal("Registro alterado com sucesso")
+      expect(response.status).equal(200)
+    })
+  });
+
+Cypress.Commands.add("deletarUsuario", (token, id) =>{
+  cy.request({
+    method: "DELETE",
+    url:`${"usuarios/" + id}`,
+    headers: {authorization: token},
+  }).should((response) => {
+      expect(response.body.message).equal("Registro excluído com sucesso")
+      expect(response.status).equal(200)
+  })
+  });
 
 
 

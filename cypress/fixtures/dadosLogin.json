@@ -1,11 +1,21 @@
 [
 {
-  "email": "Edu.qa@ebac.com.br",
-  "senha": "teste"
+  "nome": "Teste",
+  "email": "Rashad.Hackett@yahoo.com",
+  "senha": "MtQR2g6H7R1ovet",
+  "url": "usuarios"
 },
 
 {
-  "email": "Email.Errado@Errado.erro",
-  "senha": "erro"
+  "nome": "deletar",
+  "email": "deletar@deletar.del",
+  "senha": "deletar",
+  "url": "usuarios"
+},
+
+{
+  "email": "EmailModeloInvalido",
+  "senha": "erro",
+  "url": "usuarios"
 }
 ]

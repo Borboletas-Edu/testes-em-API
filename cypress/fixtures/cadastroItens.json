@@ -1,9 +1,9 @@
 [
 {
-  "item":"Jhin ",
-  "valor":4,
-  "descr":"São apenas quatro palavras",
-  "quant":4
+  "item":"produtoDeTeste",
+  "valor": 400,
+  "descr":"produtoparatestes",
+  "quant": 40
 },
 {
   "item":"Produto a ser editado",
