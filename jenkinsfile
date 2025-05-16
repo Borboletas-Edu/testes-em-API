@@ -2,13 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Setup') {
+        stage('instalar dependencias') {
             steps {
-                git branch: 'main', url: 'https://github.com/Borboletas-Edu/testes-em-API.git'
                 sh 'npm install'
             }
         }
-        stage('test') {
+        stage('testes') {
             steps {
                 sh 'NO_COLOR=1 npx cypress run'
             }
