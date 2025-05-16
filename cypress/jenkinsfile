@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Setup') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Borboletas-Edu/testes-em-API.git'
+                sh 'npm install'
+            }
+        }
+        stage('test') {
+            steps {
+                sh 'NO_COLOR=1 npx cypress run'
+            }
+        }
+    }
+}
+
+
