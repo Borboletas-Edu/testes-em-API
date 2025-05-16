@@ -9,6 +9,7 @@ pipeline {
         }
         stage('testes') {
             steps {
+                sh 'chmod +x ./node_modules/.bin/cypress
                 sh 'NO_COLOR=1 npx cypress run'
             }
         }
